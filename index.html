@@ -3,14 +3,17 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Mi Página en GitHub Pages</title>
+  <title>Turismo Venezuela — Blog y Empresa</title>
   <style>
     :root {
       --bg: #0f172a;
-      --card: #1e293b;
+      --surface: #1e293b;
+      --surface-soft: #162032;
       --text: #f8fafc;
       --muted: #94a3b8;
-      --accent: #38bdf8;
+      --accent: #eab308;
+      --accent-dark: #1e1b08;
+      --border: rgba(255, 255, 255, 0.1);
     }
 
     * {
@@ -23,89 +26,295 @@
       font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
       background-color: var(--bg);
       color: var(--text);
+      line-height: 1.6;
       min-height: 100vh;
-      display: grid;
-      place-items: center;
-      padding: 1.5rem;
     }
 
-    .card {
-      max-width: 540px;
-      width: 100%;
-      background-color: var(--card);
-      border: 1px solid rgba(255, 255, 255, 0.08);
-      border-radius: 14px;
-      padding: 2rem;
-      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.35);
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 2rem 1.25rem 4rem;
     }
 
-    .badge {
+    header {
+      margin-bottom: 1.75rem;
+    }
+
+    .brand-tag {
       display: inline-block;
       font-size: 0.75rem;
-      font-weight: 600;
+      font-weight: 700;
       text-transform: uppercase;
-      letter-spacing: 0.06em;
+      letter-spacing: 0.08em;
       color: var(--accent);
-      background: rgba(56, 189, 248, 0.12);
-      padding: 0.3rem 0.65rem;
+      background: rgba(234, 179, 8, 0.12);
+      padding: 0.3rem 0.7rem;
       border-radius: 999px;
-      margin-bottom: 1rem;
-    }
-
-    h1 {
-      font-size: 1.75rem;
-      line-height: 1.2;
       margin-bottom: 0.75rem;
     }
 
-    p {
+    h1 {
+      font-size: clamp(1.7rem, 3.5vw, 2.35rem);
+      line-height: 1.2;
+      margin-bottom: 0.4rem;
+    }
+
+    .subtitle {
       color: var(--muted);
-      line-height: 1.6;
-      margin-bottom: 1.5rem;
+      font-size: 1rem;
     }
 
-    button {
-      background-color: var(--accent);
-      color: #082f49;
-      font-weight: 600;
-      border: none;
+    /* Barra de 5 pestañas */
+    .tabs {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 0.75rem;
+      margin-bottom: 1.75rem;
+    }
+
+    .tab-btn {
+      background: var(--surface-soft);
+      color: var(--muted);
+      border: 1px solid var(--border);
       border-radius: 8px;
-      padding: 0.65rem 1.1rem;
+      padding: 0.6rem 1.05rem;
+      font-size: 0.95rem;
+      font-weight: 600;
       cursor: pointer;
-      transition: opacity 0.15s ease;
+      transition: all 0.15s ease;
     }
 
-    button:hover {
-      opacity: 0.9;
-    }
-
-    #status {
-      margin-top: 1rem;
-      font-size: 0.9rem;
+    .tab-btn:hover {
       color: var(--text);
+      border-color: rgba(255, 255, 255, 0.25);
+    }
+
+    .tab-btn.active {
+      background: var(--accent);
+      color: var(--accent-dark);
+      border-color: var(--accent);
+    }
+
+    /* Contenido de pestañas */
+    .tab-panel {
+      display: none;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 2rem;
+    }
+
+    .tab-panel.active {
+      display: block;
+      animation: fadeIn 0.2s ease;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(4px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .tab-panel h2 {
+      font-size: 1.5rem;
+      margin-bottom: 1rem;
+      color: var(--text);
+    }
+
+    .tab-panel h3 {
+      font-size: 1.15rem;
+      margin-top: 1.25rem;
+      margin-bottom: 0.4rem;
+      color: var(--accent);
+    }
+
+    .tab-panel p {
+      color: var(--muted);
+      margin-bottom: 1rem;
+    }
+
+    .post-meta {
+      font-size: 0.85rem;
+      color: var(--accent);
+      margin-bottom: 1rem;
+      font-weight: 600;
+    }
+
+    .grid-2 {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 1rem;
+      margin-top: 1.25rem;
+    }
+
+    .info-box {
+      background: var(--surface-soft);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 1.1rem;
+    }
+
+    .info-box strong {
+      display: block;
+      margin-bottom: 0.35rem;
+      color: var(--text);
+    }
+
+    .contact-list {
+      list-style: none;
+      margin-top: 1rem;
+    }
+
+    .contact-list li {
+      padding: 0.6rem 0;
+      border-bottom: 1px solid var(--border);
+      color: var(--muted);
+    }
+
+    .contact-list li strong {
+      color: var(--text);
+    }
+
+    .note {
+      margin-top: 1.25rem;
+      font-size: 0.88rem;
+      color: var(--muted);
+      font-style: italic;
     }
   </style>
 </head>
 <body>
-  <main class="card">
-    <span class="badge">GitHub Pages</span>
-    <h1>¡Hola! Mi sitio está en línea</h1>
-    <p>
-      Esta es una página de prueba creada con HTML, CSS y JavaScript. Si estás viendo esto,
-      tu repositorio y tu despliegue funcionan correctamente.
-    </p>
-    <button id="test-btn" type="button">Probar interacción</button>
-    <div id="status" aria-live="polite"></div>
-  </main>
+  <div class="container">
+    <header>
+      <span class="brand-tag">Empresa de Turismo • Venezuela</span>
+      <h1>Rutas &amp; Horizontes de Venezuela</h1>
+      <p class="subtitle">Experiencias de viaje, naturaleza y cultura local — Borrador inicial en archivo único.</p>
+    </header>
+
+    <nav class="tabs" role="tablist" aria-label="Secciones principales">
+      <button class="tab-btn active" role="tab" aria-selected="true" data-tab="inicio">Inicio</button>
+      <button class="tab-btn" role="tab" aria-selected="false" data-tab="mision">Misión</button>
+      <button class="tab-btn" role="tab" aria-selected="false" data-tab="vision">Visión</button>
+      <button class="tab-btn" role="tab" aria-selected="false" data-tab="destinos">Destinos</button>
+      <button class="tab-btn" role="tab" aria-selected="false" data-tab="contacto">Contacto</button>
+    </nav>
+
+    <main>
+      <!-- Pestaña 1: Inicio (Blog) -->
+      <section id="inicio" class="tab-panel active" role="tabpanel">
+        <div class="post-meta">Blog de Viajes • El encanto del buen turismo en Venezuela</div>
+        <h2>Venezuela: contrastes que enamoran a cualquier viajero</h2>
+        <p>
+          Hablar de turismo en Venezuela es hablar de una diversidad geográfica difícil de igualar en un
+          mismo territorio. Desde la calidez de sus costas caribeñas y los médanos dorados hasta las
+          mesetas de la Gran Sabana, los tepuyes milenarios, los Andes y los llanos abiertos, cada
+          región ofrece una experiencia distinta.
+        </p>
+        <p>
+          El buen turismo no se trata solo de llegar a un paisaje bonito, sino de viajar con respeto,
+          apoyar a los guías y emprendedores locales, cuidar los ecosistemas y descubrir la gastronomía
+          y calidez de su gente. Cuando se planifica con información clara y acompañamiento responsable,
+          cada ruta se convierte en un recuerdo que perdura.
+        </p>
+
+        <h3>Lo que hace especial recorrer el país</h3>
+        <div class="grid-2">
+          <div class="info-box">
+            <strong>Diversidad natural</strong>
+            <p>Selva, sabana, montañas andinas, ríos caudalosos y playas en una misma geografía.</p>
+          </div>
+          <div class="info-box">
+            <strong>Cultura y hospitalidad</strong>
+            <p>Tradiciones regionales, música, gastronomía y el trato cercano de las comunidades anfitrionas.</p>
+          </div>
+        </div>
+        <p class="note">Próximo paso: reemplazar este borrador con el nombre real de la agencia, fotos y artículos propios.</p>
+      </section>
+
+      <!-- Pestaña 2: Misión -->
+      <section id="mision" class="tab-panel" role="tabpanel">
+        <h2>Nuestra Misión</h2>
+        <p>
+          Diseñar y operar experiencias turísticas seguras, auténticas y bien organizadas en Venezuela,
+          conectando a viajeros nacionales e internacionales con los paisajes, la cultura y el talento
+          local de cada destino.
+        </p>
+        <p>
+          Trabajamos bajo criterios de atención cercana, planificación transparente y respeto por el
+          entorno natural y comunitario en cada salida.
+        </p>
+      </section>
+
+      <!-- Pestaña 3: Visión -->
+      <section id="vision" class="tab-panel" role="tabpanel">
+        <h2>Nuestra Visión</h2>
+        <p>
+          Consolidarnos como una agencia de turismo referente en Venezuela por la calidad de su servicio,
+          la innovación en sus rutas y su aporte al turismo sostenible, promoviendo el orgullo por los
+          destinos del país y el crecimiento de las comunidades aliadas.
+        </p>
+      </section>
+
+      <!-- Pestaña 4: Destinos -->
+      <section id="destinos" class="tab-panel" role="tabpanel">
+        <h2>Rutas y Destinos Destacados</h2>
+        <p>Una muestra inicial de las regiones que podemos trabajar y detallar en futuras versiones:</p>
+        <div class="grid-2">
+          <div class="info-box">
+            <strong>Guayana y Gran Sabana</strong>
+            <p>Saltos de agua, sabanas, tepuyes y rutas de aventura en el sur del país.</p>
+          </div>
+          <div class="info-box">
+            <strong>Costa y Archipiélagos</strong>
+            <p>Playas, descanso, paseos náuticos y escapadas de fin de semana.</p>
+          </div>
+          <div class="info-box">
+            <strong>Los Andes</strong>
+            <p>Clima de montaña, pueblos tradicionales, rutas escénicas y gastronomía local.</p>
+          </div>
+          <div class="info-box">
+            <strong>Rutas Personalizadas</strong>
+            <p>Itinerarios a medida para familias, grupos o viajes corporativos.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Pestaña 5: Contacto -->
+      <section id="contacto" class="tab-panel" role="tabpanel">
+        <h2>Contacto</h2>
+        <p>¿Quieres cotizar una ruta o consultar disponibilidad? Completa estos datos con los canales oficiales de tu empresa:</p>
+        <ul class="contact-list">
+          <li><strong>Correo electrónico:</strong> reservas@tudominio-turismo.com</li>
+          <li><strong>WhatsApp / Teléfono:</strong> +58 (000) 000-0000</li>
+          <li><strong>Ubicación:</strong> Venezuela</li>
+          <li><strong>Horario de atención:</strong> Lunes a sábado, 8:00 a. m. – 6:00 p. m.</li>
+        </ul>
+      </section>
+    </main>
+  </div>
 
   <script>
-    const btn = document.getElementById("test-btn");
-    const status = document.getElementById("status");
-    let clicks = 0;
+    const buttons = document.querySelectorAll(".tab-btn");
+    const panels = document.querySelectorAll(".tab-panel");
 
-    btn.addEventListener("click", () => {
-      clicks += 1;
-      status.textContent = `JavaScript activo: botón pulsado ${clicks} ${clicks === 1 ? "vez" : "veces"}.`;
+    buttons.forEach((btn) => {
+      btn.addEventListener("click", () => {
+        const targetId = btn.dataset.tab;
+
+        buttons.forEach((b) => {
+          b.classList.remove("active");
+          b.setAttribute("aria-selected", "false");
+        });
+
+        panels.forEach((panel) => {
+          panel.classList.remove("active");
+        });
+
+        btn.classList.add("active");
+        btn.setAttribute("aria-selected", "true");
+        document.getElementById(targetId).classList.add("active");
+      });
     });
   </script>
 </body>
